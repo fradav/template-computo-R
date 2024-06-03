@@ -1,7 +1,8 @@
 name: R
+
 on:
   repository_dispatch:
-    types: [custom-event] 
+    types: [custom-event]
   workflow_call:
     inputs:
       config-path:
@@ -10,7 +11,6 @@ on:
     secrets:
       token:
         required: true
-
 
 jobs:
   build-deploy:
@@ -42,11 +42,10 @@ jobs:
       - name: Restore R environment with renv
         run: |
           Rscript -e 'install.packages("renv")'
-          Rscript -e 'renv::restore()
+          Rscript -e 'renv::restore()'
           
       - name: Compress virtual environment
-        run: |
-          zip -r renv.zip ./renv
+        run: zip -r renv.zip ./renv
 
       - name: Upload virtual environment as artifact
         uses: actions/upload-artifact@v3
