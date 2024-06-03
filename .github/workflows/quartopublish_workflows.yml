@@ -68,5 +68,5 @@ jobs:
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
-          source ./renv/bin/activate
+          Rscript -e 'renv::load()'
           quarto publish template-computo-R.qmd
