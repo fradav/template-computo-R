@@ -16,7 +16,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Cache R libraries
@@ -42,6 +42,10 @@ jobs:
       - name: Decompress virtual environment
         run: |
           unzip ./renv.zip/renv.zip
+
+      - name: Install renv
+        run: |
+          Rscript -e 'install.packages("renv")'
 
       - name: Set up quarto
         uses: quarto-dev/quarto-actions/setup@v2

@@ -39,6 +39,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-renv-
 
+      - name: Restore R environment with renv
+        run: |
+          Rscript -e 'install.packages("renv")'
+          Rscript -e 'renv::restore()
+          
       - name: Compress virtual environment
         run: |
           zip -r renv.zip ./renv
