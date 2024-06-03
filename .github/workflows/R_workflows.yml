@@ -31,6 +31,14 @@ jobs:
         with:
           cache-version: 1
 
+      - name: Cache R libraries
+        uses: actions/cache@v3
+        with:
+          path: ~/.R/renv/cache
+          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-renv-
+
       - name: Compress virtual environment
         run: |
           zip -r renv.zip ./renv
@@ -38,5 +46,5 @@ jobs:
       - name: Upload virtual environment as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: R-venv
-          path: venv.zip
+          name: R-renv
+          path: renv.zip
