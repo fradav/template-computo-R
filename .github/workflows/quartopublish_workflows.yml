@@ -39,7 +39,7 @@ jobs:
           path: renv.zip
 
       - name: Decompress virtual environment
-        run: unzip renv.zip
+        run: unzip renv.zip.renv.zip
 
       - name: Install renv
         run: Rscript -e 'install.packages("renv")'
