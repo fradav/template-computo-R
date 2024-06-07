@@ -1,8 +1,6 @@
 name: r-env
-
 channels:
   - conda-forge
-
 dependencies:
   - r
   - r-renv=1.0.7

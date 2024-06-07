@@ -51,5 +51,5 @@ jobs:
           QUARTO_PUBLISHER: gh-pages
         run: |
           eval "$(micromamba shell hook --shell bash)"
-          micromamba activate myenv
+          micromamba activate r-env
           quarto publish template-computo-python.qmd
