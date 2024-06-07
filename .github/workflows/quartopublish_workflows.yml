@@ -1,4 +1,4 @@
-name: Publish
+name: publish
 
 on:
   workflow_call:
@@ -9,20 +9,21 @@ on:
     secrets:
       token:
         required: true
-
+        
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Install R Dependencies with renv
-        uses: r-lib/actions/setup-renv@v2
+      - name: restore micromamba
+        uses: mamba-org/setup-micromamba@v1
         with:
-          cache-version: 1
+          environment-file: environment.yml
+          cache-downloads: true
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -35,9 +36,10 @@ jobs:
           ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin
           ~/.TinyTeX/bin/x86_64-linux/tlmgr path add
           ~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts
-  
+
       - name: Install Computo extension for Quarto
-        run: quarto add --no-prompt computorg/computo-quarto-extension
+        run: |
+          quarto add --no-prompt computorg/computo-quarto-extension
 
       - name: Configure Git
         run: |
@@ -48,4 +50,6 @@ jobs:
         env:
           QUARTO_PUBLISHER: gh-pages
         run: |
-          quarto publish template-computo-R.qmd
+          eval "$(micromamba shell hook --shell bash)"
+          micromamba activate myenv
+          quarto publish template-computo-python.qmd
