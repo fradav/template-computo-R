@@ -52,4 +52,4 @@ jobs:
         run: |
           eval "$(micromamba shell hook --shell bash)"
           micromamba activate r-env
-          quarto publish template-computo-python.qmd
+          quarto publish template-computo-R.qmd
