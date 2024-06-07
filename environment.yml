@@ -2,10 +2,9 @@ name: r-env
 
 channels:
   - conda-forge
-  - defaults
 
 dependencies:
-  - r-base=4.4.0
+  - r=4.4.0
   - r-renv=1.0.7
   - r-mass=7.3
   - r-matrix=1.6
