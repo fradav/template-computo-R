@@ -42,8 +42,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: |
-            ~/renv.lock
-            ~/renv/
+            /home/runner/work/_temp/renv
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
 
