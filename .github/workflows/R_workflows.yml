@@ -46,6 +46,7 @@ jobs:
           cat << 'EOF' >> activate_env.sh
           echo source("renv/activate.R") > .Rprofile
           quarto publish gh-pages template-computo-R.qmd
+          EOF
 
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
