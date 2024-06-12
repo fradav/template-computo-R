@@ -38,11 +38,11 @@ jobs:
       - name: Calculate SHA-256
         id: calculate-sha256
         run: |
-          echo "sha256=$(sha256sum renv.lock | cut -d ' ' -f 1)" >> $GITHUB_OUTPUT
+          echo "sha256=Ubuntu 22.04.4 LTS-R version 4.4.0 (2024-04-24)-1-b573baa189b31452f33798ff25911944e34db48a0ae0eb2e5499054ef53673d5" >> $GITHUB_OUTPUT
           
       - name: script
         run: |
-          echo "sha256=${{steps.calculate-sha256.outputs.sha256}}" > activate_env.sh
+          echo "sha256=Ubuntu 22.04.4 LTS-R version 4.4.0 (2024-04-24)-1-b573baa189b31452f33798ff25911944e34db48a0ae0eb2e5499054ef53673d5" > activate_env.sh
           cat << 'EOF' >> activate_env.sh
           echo source("renv/activate.R") > .Rprofile
           quarto publish gh-pages template-computo-R.qmd
@@ -54,12 +54,5 @@ jobs:
           path: activate_env.sh
 
 
-      - name: Cache environment
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            ~/renv.lock
-            ~/renv/
-          key: ${{ runner.os }}-renv-${{steps.calculate-sha256.outputs.sha256}}
 
 

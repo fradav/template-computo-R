@@ -44,7 +44,7 @@ jobs:
           path: |
             ~/renv.lock
             ~/renv/
-          key: ${{ runner.os }}-renv-${{ steps.calculate-sha256.outputs.sha256 }}
+          key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
 
       - name: Set up Quarto
