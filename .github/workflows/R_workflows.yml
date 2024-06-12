@@ -43,7 +43,7 @@ jobs:
       - name: script
         run: |
           echo "sha256=Ubuntu 22.04.4 LTS-R version 4.4.0 (2024-04-24)-1-b573baa189b31452f33798ff25911944e34db48a0ae0eb2e5499054ef53673d5" > activate_env.sh
-          echo "renv::restore" >> activate_env.sh
+          echo "[source \"$(Rscript -e 'cat(renv::activate(), \"\n\")')\"]" >> activate_env.sh
           echo 'quarto publish gh-pages template-computo-R.qmd' >> activate_env.sh
 
       - name: Deploy an artifact
