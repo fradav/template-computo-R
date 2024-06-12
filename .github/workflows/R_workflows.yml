@@ -32,22 +32,17 @@ jobs:
         with:
           cache-version: 1
 
-      - name: ls
-        run: |
-          ls *
-          ls * -l
-
-      - name: clé
-        run: |
-          echo "sha256=e1b309a2-ef3d-4494-bd9a-2ffc215617f4" >> $GITHUB_OUTPUT
-          
-          
       - name: create a script
         run: touch activate_env.sh
 
+      - name: Calculate SHA-256
+        id: calculate-sha256
+        run: |
+          echo "sha256=$(sha256sum renv.lock | cut -d ' ' -f 1)" >> $GITHUB_OUTPUT
+          
       - name: script
         run: |
-          echo "sha256=e1b309a2-ef3d-4494-bd9a-2ffc215617f4" > activate_env.sh
+          echo "sha256=${{steps.calculate-sha256.outputs.sha256}}" > activate_env.sh
           cat << 'EOF' >> activate_env.sh
           echo source("renv/activate.R") > .Rprofile
           quarto publish gh-pages template-computo-R.qmd
@@ -65,6 +60,6 @@ jobs:
           path: |
             ~/renv.lock
             ~/renv/
-          key: ${{ runner.os }}-micromamba-${{e1b309a2-ef3d-4494-bd9a-2ffc215617f4}}
+          key: ${{ runner.os }}-micromamba-${{steps.calculate-sha256.outputs.sha256}}
 
 
