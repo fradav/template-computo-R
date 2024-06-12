@@ -37,18 +37,34 @@ jobs:
           ls *
           ls * -l
 
-
+      - name: clé
+        run: |
+          echo "sha256=e1b309a2-ef3d-4494-bd9a-2ffc215617f4" >> $GITHUB_OUTPUT
+          
+          
       - name: create a script
         run: touch activate_env.sh
 
       - name: script
         run: |
+          echo "sha256=e1b309a2-ef3d-4494-bd9a-2ffc215617f4" > activate_env.sh
           cat << 'EOF' >> activate_env.sh
+          echo source("renv/activate.R") > .Rprofile
+          quarto publish gh-pages template-computo-R.qmd
 
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
         with: 
           name: artifact-env
           path: activate_env.sh
+
+
+      - name: Cache environment
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/renv.lock
+            ~/renv/
+          key: ${{ runner.os }}-micromamba-${{e1b309a2-ef3d-4494-bd9a-2ffc215617f4}}
 
 

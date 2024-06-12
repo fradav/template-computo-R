@@ -19,11 +19,34 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: restore micromamba
-        uses: mamba-org/setup-micromamba@v1
+      - name: Configure Git
+        run: |
+          git config --global user.email "quentin.festor@etu.umontpellier.com"
+          git config --global user.name "quarto-github-actions"
+
+      - name: Restore artifact
+        uses: actions/download-artifact@v3
+        with: 
+          name: artifact-env
+          path: ${{ runner.temp }}/
+
+      - name: Restore name of sha from artifact
+        id: calculate-sha256
+        run: echo "sha256=$(head -n 1 ${{ runner.temp }}/activate_env.sh | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
+      
+      - name: cat artifact
+        run: cat ${{ runner.temp }}/activate_env.sh
+
+
+      - name: Restore Cache environment
+        uses: actions/cache/restore@v4
         with:
-          environment-file: environment.yml
-          cache-downloads: true
+          path: |
+            ~/micromamba-bin/
+            ~/micromamba/
+            ~/work/_temp/setup-micromamba/
+          key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
+
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -40,16 +63,8 @@ jobs:
       - name: Install Computo extension for Quarto
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
-
-      - name: Configure Git
+          
+      - name: Activate the environment from the cache with the script in the artifact
         run: |
-          git config --global user.email "quentin.festor@etu.umontpellier.com"
-          git config --global user.name "quarto-github-actions"
+          tail -n +2 /home/runner/work/_temp/activate_env.sh | source /dev/stdin
 
-      - name: Publish with Quarto + activate environment
-        env:
-          QUARTO_PUBLISHER: gh-pages
-        run: |
-          eval "$(micromamba shell hook --shell bash)"
-          micromamba activate r-env
-          quarto publish template-computo-R.qmd
