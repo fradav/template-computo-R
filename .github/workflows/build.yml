@@ -5,7 +5,7 @@ on:
     branches: ["main"]
   repository_dispatch:
     types: [custom-event] 
-
+  workflow_dispatch:
 
 jobs:
   call_R_workflows:
@@ -15,7 +15,7 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }} 
   call_quartopublish_workflows:
-    uses: ./.github/workflows/quartopublish_workflows.yml
+    uses: Qufst/Workflows_computorg/.github/workflows/quartopublish_workflows.yml@main
     needs: call_R_workflows
     with:
       config-path: './config/quarto_config.yml'
