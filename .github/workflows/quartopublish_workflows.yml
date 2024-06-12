@@ -42,10 +42,9 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: |
-            ~/micromamba-bin/
-            ~/micromamba/
-            ~/work/_temp/setup-micromamba/
-          key: ${{ runner.os }}-micromamba-${{ steps.calculate-sha256.outputs.sha256 }}
+            ~/renv.lock
+            ~/renv/
+          key: ${{ runner.os }}-renv-${{ steps.calculate-sha256.outputs.sha256 }}
 
 
       - name: Set up Quarto

@@ -60,6 +60,6 @@ jobs:
           path: |
             ~/renv.lock
             ~/renv/
-          key: ${{ runner.os }}-micromamba-${{steps.calculate-sha256.outputs.sha256}}
+          key: ${{ runner.os }}-renv-${{steps.calculate-sha256.outputs.sha256}}
 
 
