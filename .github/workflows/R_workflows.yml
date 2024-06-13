@@ -46,7 +46,7 @@ jobs:
           echo "sudo apt-get install r-base" >> activate_env.sh
           echo "$(Rscript -e 'cat(renv::activate(), \"\n\")')" >> activate_env.sh
           echo "renv::restore()" >> activate_env.sh
-          echo: "$(Rscript -e 'renv::status()')" >> activate_env.sh
+          echo "$(Rscript -e 'renv::status()')" >> activate_env.sh
           echo "quarto publish gh-pages template-computo-R.qmd" >> activate_env.sh
 
       - name: Deploy an artifact
