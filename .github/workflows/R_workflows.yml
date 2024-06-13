@@ -45,6 +45,7 @@ jobs:
         run: |
           echo "sha256=Ubuntu 22.04.4 LTS-R version 4.4.0 (2024-04-24)-1-b573baa189b31452f33798ff25911944e34db48a0ae0eb2e5499054ef53673d5" > activate_env.sh
           echo "echo "RENV_PATHS_ROOT=/home/runner/work/_temp/renv" >> $GITHUB_ENV" >> activate_env.sh
+          echo "output_file <- Sys.getenv("GITHUB_OUTPUT")" >> activate_env.sh
           echo "cat("os-version=", sessionInfo()$running, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)" >> activate_env.sh
           echo "cat("r-version=", R.Version()$version.string, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)" >> activate_env.sh
           echo "echo source("renv/activate.R") > .Rprofile"
