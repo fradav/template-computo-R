@@ -46,8 +46,8 @@ jobs:
           echo "/usr/bin/sudo DEBIAN_FRONTEND=noninteractive apt-get update -y -qq" >> activate_env.sh
           echo "/usr/bin/sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gdebi-core qpdf devscripts ghostscript" >> activate_env.sh
           echo "/usr/bin/sudo ln -sf /opt/R/4.4.0/bin/R /usr/local/bin/R" >> activate_env.sh
-          echo " /usr/bin/sudo ln -sf /opt/R/4.4.0/bin/Rscript /usr/local/bin/Rscript" >> activate_env.sh
-          echo "renv::activate()" >> activate_env.sh
+          echo "/usr/bin/sudo ln -sf /opt/R/4.4.0/bin/Rscript /usr/local/bin/Rscript" >> activate_env.sh
+          echo "Rscript -e 'renv::activate()'" >> activate_env.sh
           echo "quarto publish gh-pages template-computo-R.qmd" >> activate_env.sh
 
       - name: Deploy an artifact
