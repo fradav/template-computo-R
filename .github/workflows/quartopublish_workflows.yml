@@ -45,6 +45,12 @@ jobs:
             /home/runner/work/_temp/renv
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
+      - name: ls
+        run: ls -la
+
+      - name: ls
+        run: ls -l
+
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
