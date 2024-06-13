@@ -44,18 +44,11 @@ jobs:
       - name: script
         run: |
           echo "sha256=Ubuntu 22.04.4 LTS-R version 4.4.0 (2024-04-24)-1-b573baa189b31452f33798ff25911944e34db48a0ae0eb2e5499054ef53673d5" > activate_env.sh
-          echo "/usr/bin/sudo DEBIAN_FRONTEND=noninteractive apt-get update -y -qq" >> activate_env.sh
-          echo "/usr/bin/sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gdebi-core qpdf devscripts ghostscript" >> activate_env.sh
-          echo "/usr/bin/sudo ln -sf /opt/R/4.4.0/bin/R /usr/local/bin/R" >> activate_env.sh
-          echo "/usr/bin/sudo ln -sf /opt/R/4.4.0/bin/Rscript /usr/local/bin/Rscript" >> activate_env.sh
-          echo 'echo "renv=/home/runner/work/_temp/renv" >> $GITHUB_ENV' >> activate_env.sh
-          echo "if (!requireNamespace("renv", quietly=TRUE)) install.packages("renv") renv::activate(profile = )" >> activate_env.sh
+          echo "echo "RENV_PATHS_ROOT=/home/runner/work/_temp/renv" >> $GITHUB_ENV" >> activate_env.sh
           echo "cat("os-version=", sessionInfo()$running, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)" >> activate_env.sh
           echo "cat("r-version=", R.Version()$version.string, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)" >> activate_env.sh
-          echo "Rscript -e 'renv::restore()'" >> activate_env.sh
-          echo "if command -v /c/Rtools/bin/tar && /c/Rtools/bin/tar --version | grep -q 'tar (GNU tar) 1.30' then echo 'C:/Program Files/Git/usr/bin' >> $GITHUB_PATH fi">> activate_env.sh
-          echo "Rscript -e 'renv::activate()'" >> activate_env.sh
-          echo "Rscript -e 'quarto publish gh-pages template-computo-R.qmd'" >> activate_env.sh
+          echo "echo source("renv/activate.R") > .Rprofile"
+          echo "quarto publish gh-pages template-computo-R.qmd" >> activate_env.sh
 
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
