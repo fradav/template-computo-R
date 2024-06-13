@@ -47,6 +47,9 @@ jobs:
 
       - name: ls
         run: |
+          ls -l /home/runner/work/_temp/renv
+      - name: ls
+        run: |
           ls /home/runner/work/_temp/renv/cache
 
       - name: Set up Quarto
