@@ -32,12 +32,6 @@ jobs:
         with:
           cache-version: 1
 
-      - name: ls
-        run: |
-          ls -l /home/runner/work/_temp/renv
-      - name: ls
-        run: |
-          ls /home/runner/work/_temp/renv/cache
 
       - name: create a script
         run: touch activate_env.sh
@@ -58,7 +52,7 @@ jobs:
           echo "if (!requireNamespace("renv", quietly=TRUE)) install.packages("renv") renv::activate(profile = )" >> activate_env.sh
           echo "cat("os-version=", sessionInfo()$running, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)" >> activate_env.sh
           echo "cat("r-version=", R.Version()$version.string, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)" >> activate_env.sh
-          echo "renv::restore()" >> activate_env.sh
+          echo "Rscript -e 'renv::restore()'" >> activate_env.sh
           echo "if command -v /c/Rtools/bin/tar && /c/Rtools/bin/tar --version | grep -q 'tar (GNU tar) 1.30' then echo 'C:/Program Files/Git/usr/bin' >> $GITHUB_PATH fi">> activate_env.sh
           echo "Rscript -e 'renv::activate()'" >> activate_env.sh
           echo "Rscript -e 'quarto publish gh-pages template-computo-R.qmd'" >> activate_env.sh

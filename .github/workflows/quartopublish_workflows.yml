@@ -45,12 +45,6 @@ jobs:
             /home/runner/work/_temp/renv
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
-      - name: ls
-        run: |
-          ls -l /home/runner/work/_temp/renv
-      - name: ls
-        run: |
-          ls /home/runner/work/_temp/renv/cache
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -70,5 +64,5 @@ jobs:
           
       - name: Activate the environment from the cache with the script in the artifact
         run: |
-          tail -n +2 /home/runner/work/_temp/activate_env.sh | source /dev/stdin
+          tail -n +2 ${{ runner.temp }}/activate_env.sh | source /dev/stdin
 
