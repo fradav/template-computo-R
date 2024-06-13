@@ -44,6 +44,12 @@ jobs:
       - name: ls
         run: ls /home/runner/work/_temp/renv/source/repository    
 
+      - name: ls
+        run: ls -la
+
+      - name: ls
+        run: ls -l
+
 
       - name: create a script
         run: touch activate_env.sh
