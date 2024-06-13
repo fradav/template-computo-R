@@ -54,7 +54,7 @@ jobs:
           echo "/usr/bin/sudo DEBIAN_FRONTEND=noninteractive apt-get install -y gdebi-core qpdf devscripts ghostscript" >> activate_env.sh
           echo "/usr/bin/sudo ln -sf /opt/R/4.4.0/bin/R /usr/local/bin/R" >> activate_env.sh
           echo "/usr/bin/sudo ln -sf /opt/R/4.4.0/bin/Rscript /usr/local/bin/Rscript" >> activate_env.sh
-          echo 'echo "RENV_PATHS_ROOT=/home/runner/work/_temp/renv" >> $GITHUB_ENV' >> activate_env.sh
+          echo 'echo "renv=/home/runner/work/_temp/renv" >> $GITHUB_ENV' >> activate_env.sh
           echo "if (!requireNamespace("renv", quietly=TRUE)) install.packages("renv") renv::activate(profile = )" >> activate_env.sh
           echo "cat("os-version=", sessionInfo()$running, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)" >> activate_env.sh
           echo "cat("r-version=", R.Version()$version.string, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)" >> activate_env.sh
