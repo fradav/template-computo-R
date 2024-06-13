@@ -47,7 +47,7 @@ jobs:
 
       - name: ls
         run: |
-          ls /home/runner/work/_temp/renv
+          ls /home/runner/work/_temp/renv/cache
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
