@@ -64,7 +64,6 @@ jobs:
           echo "ls -la" >> activate_env.sh
           echo 'echo "ENV_PATHS_ROOT=/home/runner/renv" >> \$GITHUB_ENV' >> activate_env.sh
           echo "ls -la" >> activate_env.sh
-          echo 'Rscript -e "renv::restore(renv.lock)"' >> activate_env.sh
           echo 'Rscript -e "renv::status()"' >> activate_env.sh
           echo "ls -a" >> activate_env.sh
 
