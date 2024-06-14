@@ -54,7 +54,7 @@ jobs:
           echo "sha256=${{ runner.os }}-renv-$hash" > activate_env.sh
           echo "ls -la" >> activate_env.sh
           echo 'echo "ENV_PATHS_ROOT=/home/runner/renv" >> \$GITHUB_ENV' >> activate_env.sh
-          echo "source /home/runner/work/template-computo-R/template-computo-R/renv/activate.R" >> activate_env.sh
+          echo "renv::restore()" >> activate_env.sh
           echo "Rscript -e 'renv::status()'" >> activate_env.sh
 
 
