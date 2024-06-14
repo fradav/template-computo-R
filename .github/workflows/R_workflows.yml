@@ -35,7 +35,9 @@ jobs:
         run: ls -la
 
       - name: ls
-        run: find ~ -name "activate.R"
+        run: |
+          find ~ -name "rmarkdown"
+          find ~ -name "knitr"
 
 
 
@@ -52,7 +54,7 @@ jobs:
           echo "sha256=${{ runner.os }}-renv-$hash" > activate_env.sh
           echo "ls -la" >> activate_env.sh
           echo 'echo "ENV_PATHS_ROOT=/home/runner/renv" >> \$GITHUB_ENV' >> activate_env.sh
-          echo "Rscript -e 'renv::activate()'" >> activate_env.sh
+          echo "source " >> activate_env.sh
           echo "Rscript -e 'renv::status()'" >> activate_env.sh
 
 
