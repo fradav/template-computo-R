@@ -47,7 +47,7 @@ jobs:
   
       - name: Set PATHS environment variable
         id: set-paths
-        run: echo "PATHS=$(cat /home/runner/path_env.sh" >> $GITHUB_ENV
+        run: echo "PATHS=$(cat /home/runner/path_env.sh)" >> $GITHUB_ENV
 
       - name: Restore Cache environment
         uses: actions/cache@v4
