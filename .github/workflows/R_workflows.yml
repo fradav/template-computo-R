@@ -29,8 +29,7 @@ jobs:
 
       - name: Install R Dependencies with renv
         uses: r-lib/actions/setup-renv@v2
-        with:
-          cache-version: 1
+
 
       - name: lss
         run: ls /home/runner/work/_temp/renv/cache/v5
