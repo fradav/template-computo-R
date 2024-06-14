@@ -47,7 +47,7 @@ jobs:
         run: ls -la
 
       - name: ls
-        run: find ~ -name ".Rprofile"
+        run: find ~ -name "activate.R"
 
       - name: ls
         run: find ~ -name ".gitignore"
