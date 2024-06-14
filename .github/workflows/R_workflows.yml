@@ -47,7 +47,7 @@ jobs:
         run: ls -la
 
       - name: ls
-        run: ls -l
+        run: find ~ -name ".Rprofile"
 
 
       - name: create a script
