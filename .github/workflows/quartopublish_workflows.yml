@@ -44,7 +44,8 @@ jobs:
           path: |
             /home/runner/work/_temp/renv
             ~/renv.lock
-            ~/.Rprofile
+            /home/runner/work/template-computo-R/template-computo-R/.Rprofile
+            /home/runner/.Rprofile
             
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
