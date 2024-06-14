@@ -30,20 +30,24 @@ jobs:
       - name: Install R Dependencies with renv
         uses: r-lib/actions/setup-renv@v2
 
-
-      - name: ls
-        run: ls -la
-
-      - name: ls
-        run: |
-          find ~ -name "rmarkdown"
-          find ~ -name "knitr"
-
-
-
       - name: create a script
         run: touch activate_env.sh
 
+      - name: create a script with path for cache
+        run: touch path_env.sh
+
+      - name: path
+        run: |
+            echo "/home/runner/work/_temp/renv" >> path_env.sh
+            echo "~/renv.lock" >> path_env.sh
+            echo "/home/runner/work/template-computo-R/template-computo-R/.Rprofile" >> path_env.sh
+            echo "/home/runner/.Rprofile" >> path_env.sh
+            echo "/home/runner/work/_temp/Library/renv/resources/activate.R" >> path_env.sh
+            echo "/home/runner/work/template-computo-R/template-computo-R/renv/activate.R" >> path_env.sh
+            echo "/home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/renv/resources/activate.R" >> path_env.sh
+            echo "/home/runner/work/_temp/renv/source/repository/" >> path_env.sh
+            echo "/home/runner/work/_temp/renv/cache/v5/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/" >> path_env.sh
+            echo "/home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/" >> path_env.sh
 
       - name: Calculate SHA-256 hash and put it in the script
         id: calculate-sha256
@@ -52,10 +56,7 @@ jobs:
           echo "sha256=${{ runner.os }}-renv-$hash" >> $GITHUB_OUTPUT
 
           echo "sha256=${{ runner.os }}-renv-$hash" > activate_env.sh
-          echo "ls -la" >> activate_env.sh
-          echo 'echo "ENV_PATHS_ROOT=/home/runner/work/_temp/renv" >> \$GITHUB_ENV' >> activate_env.sh
           echo "Rscript -e 'renv::restore()'" >> activate_env.sh
-          echo "Rscript -e 'renv::status()'" >> activate_env.sh
 
 
 
@@ -63,7 +64,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           name: artifact-env
-          path: activate_env.sh
+          path: |
+            activate_env.sh
+            path_env.sh
 
 
       - name: Cache environment
