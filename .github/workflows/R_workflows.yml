@@ -67,12 +67,53 @@ jobs:
           echo "ls -la" >> activate_env.sh
           echo 'echo "ENV_PATHS_ROOT=/home/runner/renv" >> \$GITHUB_ENV' >> activate_env.sh
 
+      - name: Display /home/runner/.nvm/.gitignore
+        run: |
+          if [ -f  /home/runner/.nvm/.gitignore ]; then
+            cat  /home/runner/.nvm/.gitignore
+          else
+            echo "No /home/runner/.nvm/.gitignore /home/runner/.nvm/.gitignore file found in the home directory."
+          fi 
+
+      - name: Display /home/runner/work/_actions/actions/cache/v4/.gitignore
+        run: |
+          if [ -f /home/runner/work/_actions/actions/cache/v4/.gitignore ]; then
+            cat /home/runner/work/_actions/actions/cache/v4/.gitignore
+          else
+            echo "No /home/runner/work/_actions/actions/cache/v4/.gitignore file found in the home directory."
+          fi 
+
+      - name: Display /home/runner/work/_actions/actions/checkout/v3/.gitignore
+        run: |
+          if [ -f /home/runner/work/_actions/actions/checkout/v3/.gitignore ]; then
+            cat /home/runner/work/_actions/actions/checkout/v3/.gitignore
+          else
+            echo "No /home/runner/work/_actions/actions/checkout/v3/.gitignore file found in the home directory."
+          fi 
+
       - name: Display .gitignore
         run: |
-          if [ -f ~/.gitignore ]; then
-            cat .gitignore
+          if [ -f  /home/runner/work/_actions/r-lib/actions/v2/.gitignore ]; then
+            cat  /home/runner/work/_actions/r-lib/actions/v2/.gitignore
+          else
+            echo "No  /home/runner/work/_actions/r-lib/actions/v2/.gitignore file found in the home directory."
+          fi 
+
+      - name: Display .gitignore
+        run: |
+          if [ -f  /home/runner/work/template-computo-R/template-computo-R/renv/.gitignore ]; then
+            cat  /home/runner/work/template-computo-R/template-computo-R/renv/.gitignore
           else
             echo "No .gitignore file found in the home directory."
+          fi 
+
+
+      - name: Display  /home/runner/work/template-computo-R/template-computo-R/.gitignore
+        run: |
+          if [ -f  /home/runner/work/template-computo-R/template-computo-R/.gitignore ]; then
+            cat  /home/runner/work/template-computo-R/template-computo-R/.gitignore
+          else
+            echo "No  /home/runner/work/template-computo-R/template-computo-R/.gitignore file found in the home directory."
           fi 
 
 
