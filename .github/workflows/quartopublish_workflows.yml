@@ -40,11 +40,20 @@ jobs:
         id: calculate-sha256
         run: echo "sha256=$(head -n 1 ${{ runner.temp }}/activate_env.sh | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
 
+      - name: Display path_env.sh content
+        run: |
+          echo "Content of path_env.sh:"
+          cat path_env.sh
+  
+      - name: Set PATHS environment variable
+        id: set-paths
+        run: echo "PATHS=$(cat path_env.sh | tr '\n' ',')" >> $GITHUB_ENV
+
       - name: Restore Cache environment
         uses: actions/cache@v4
         with:
           path: |
-            $(cat path_env.sh)
+            ${{ env.PATHS }}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
