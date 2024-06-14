@@ -49,6 +49,9 @@ jobs:
       - name: ls
         run: find ~ -name ".Rprofile"
 
+      - name: ls
+        run: find ~ -name ".gitignore"
+
 
       - name: create a script
         run: touch activate_env.sh
@@ -72,20 +75,6 @@ jobs:
             echo "No .gitignore file found in the home directory."
           fi 
 
-      - name: Display .
-        run: |
-          if [ -f ~/. ]; then
-            cat .
-            echo "No . file found in the home directory."
-          fi 
-
-
-      - name: Display ..
-        run: |
-          if [ -f ~/.. ]; then
-            cat .
-            echo "No .. file found in the home directory."
-          fi 
 
 
 
