@@ -31,26 +31,12 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
 
 
-      - name: lss
-        run: ls /home/runner/work/_temp/renv/cache/v5
-
-      - name: ls
-        run: ls /home/runner/work/_temp/renv/index/linux-ubuntu-jammy
-
-      - name: ls
-        run: ls /home/runner/work/_temp/renv/projects
-        
-      - name: ls
-        run: ls /home/runner/work/_temp/renv/source/repository    
-
       - name: ls
         run: ls -la
 
       - name: ls
         run: find ~ -name "activate.R"
 
-      - name: ls
-        run: find ~ -name ".gitignore"
 
 
       - name: create a script
@@ -84,7 +70,9 @@ jobs:
             ~/renv.lock
             /home/runner/work/template-computo-R/template-computo-R/.Rprofile
             /home/runner/.Rprofile
-            /home/runner/work/_temp/renv/activate.R
+            /home/runner/work/_temp/Library/renv/resources/activate.R
+            /home/runner/work/template-computo-R/template-computo-R/renv/activate.R
+            /home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/renv/resources/activate.R
 
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
