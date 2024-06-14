@@ -42,7 +42,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            /home/runner/renv
+            /home/runner/work/_temp/renv
             ~/renv.lock
             /home/runner/work/template-computo-R/template-computo-R/.Rprofile
             /home/runner/.Rprofile
