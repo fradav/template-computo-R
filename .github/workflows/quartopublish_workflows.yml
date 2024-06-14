@@ -30,6 +30,12 @@ jobs:
           name: artifact-env
           path: ${{ runner.temp }}/
 
+      - name: Restore artifact
+        uses: actions/download-artifact@v3
+        with: 
+          name: artifact-cache
+          path: ~/
+
       - name: Restore name of sha from artifact
         id: calculate-sha256
         run: echo "sha256=$(head -n 1 ${{ runner.temp }}/activate_env.sh | cut -d '=' -f 2)" >> $GITHUB_OUTPUT

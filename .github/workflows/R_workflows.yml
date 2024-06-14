@@ -66,7 +66,12 @@ jobs:
           name: artifact-env
           path: |
             activate_env.sh
-            path_env.sh
+
+      - name: Deploy an artifact
+        uses: actions/upload-artifact@v3
+        with: 
+          name: artifact-cache
+          path: path_env.sh
 
 
       - name: Cache environment
