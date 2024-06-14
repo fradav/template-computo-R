@@ -59,9 +59,9 @@ jobs:
         id: calculate-sha256
         run: |
           hash=$(shasum -a 256 "renv.lock" | awk '{ print $1 }')
-          echo "sha256=micromamba-$hash" >> $GITHUB_OUTPUT
+          echo "sha256=${{ runner.os }}-renv-$hash" >> $GITHUB_OUTPUT
 
-          echo "sha256=renv-$hash" > activate_env.sh
+          echo "sha256=${{ runner.os }}-renv-$hash" > activate_env.sh
           echo 'echo "ENV_PATHS_ROOT=/home/runner/work/_temp/renv" >> \$GITHUB_ENV' >> activate_env.sh
           echo "ls -la" >> activate_env.sh
           echo 'Rscript -e "renv::restore(renv.lock)"' >> activate_env.sh
