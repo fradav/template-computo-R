@@ -63,11 +63,6 @@ jobs:
           echo "sha256=${{ runner.os }}-renv-$hash" > activate_env.sh
           echo "ls -la" >> activate_env.sh
           echo 'echo "ENV_PATHS_ROOT=/home/runner/renv" >> \$GITHUB_ENV' >> activate_env.sh
-          echo "ls -la" >> activate_env.sh
-          echo 'Rscript -e "renv::init()"' >> activate_env.sh
-          echo "ls -la /home/runner/work/_temp/renv" >> activate_env.sh
-          echo 'Rscript -e "renv::activate()"' >> activate_env.sh
-          echo "ls -a" >> activate_env.sh
 
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3

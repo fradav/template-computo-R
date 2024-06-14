@@ -71,6 +71,14 @@ jobs:
       - name: Install Computo extension for Quarto
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
+
+      - name: Display .Rprofile
+        run: |
+          if [ -f ~/.Rprofile ]; then
+            cat /home/runner/.Rprofile
+          else
+            echo "No .Rprofile file found in the home directory."
+          fi 
           
       - name: Activate the environment from the cache with the script in the artifact
         run: |
