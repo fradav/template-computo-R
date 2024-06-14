@@ -51,14 +51,15 @@ jobs:
         run: |
           n=0
           while IFS= read -r line; do
-            echo "  $line" >> $GITHUB_OUTPUT
+            n=$((n+1))
+            echo "path$n=$line" >> $GITHUB_ENV
           done < /home/runner/path_env.sh
 
       - name: Restore Cache environment
         uses: actions/cache@v4
         with:
           path: |
-            ${{ steps.set-paths.outputs }}
+            ${!path*}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
