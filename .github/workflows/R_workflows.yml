@@ -64,7 +64,7 @@ jobs:
           echo 'echo "ENV_PATHS_ROOT=/home/runner/work/_temp/renv" >> \$GITHUB_ENV' >> activate_env.sh
           echo "ls -la" >> activate_env.sh
           echo 'Rscript -e "renv::restore(renv.lock)"' >> activate_env.sh
-          echo "ls -la" >> activate_env.sh
+          echo "ls -a" >> activate_env.sh
 
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
@@ -77,7 +77,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: |
-            ~/renv
+            /home/runner/work/_temp/renv
             ~/renv.lock
             ~/.Rprofile
 

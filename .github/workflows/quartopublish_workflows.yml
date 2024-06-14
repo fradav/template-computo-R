@@ -42,7 +42,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: |
-            ~/renv
+            /home/runner/work/_temp/renv
             ~/renv.lock
             ~/.Rprofile
             
