@@ -54,19 +54,18 @@ jobs:
       - name: create a script
         run: touch activate_env.sh
 
-      - name: Calculate SHA-256
+
+      - name: Calculate SHA-256 hash and put it in the script
         id: calculate-sha256
         run: |
-          echo "sha256=Ubuntu 22.04.4 LTS-R version 4.4.0 (2024-04-24)-1-b573baa189b31452f33798ff25911944e34db48a0ae0eb2e5499054ef53673d5" >> $GITHUB_OUTPUT
-          
-      - name: script
-        run: |
-          echo "sha256=Ubuntu 22.04.4 LTS-R version 4.4.0 (2024-04-24)-1-b573baa189b31452f33798ff25911944e34db48a0ae0eb2e5499054ef53673d5" > activate_env.sh
+          hash=$(shasum -a 256 "renv.lock" | awk '{ print $1 }')
+          echo "sha256=micromamba-$hash" >> $GITHUB_OUTPUT
+
+          echo "sha256=micromamba-$hash" > activate_env.sh
           echo 'echo "ENV_PATHS_ROOT=/home/runner/work/_temp/renv" >> \$GITHUB_ENV' >> activate_env.sh
           echo "ls -la" >> activate_env.sh
           echo 'Rscript -e "renv::restore(renv.lock)"' >> activate_env.sh
           echo "ls -la" >> activate_env.sh
-
 
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
@@ -75,5 +74,13 @@ jobs:
           path: activate_env.sh
 
 
+      - name: Cache environment
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/renv.lock
+            ~/.Rprofile
+            ~/renv
 
+          key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
