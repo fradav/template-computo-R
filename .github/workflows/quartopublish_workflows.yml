@@ -74,8 +74,8 @@ jobs:
 
       - name: Display .Rprofile
         run: |
-          if [ -f ~/.Rprofile ]; then
-            cat /home/runner/.Rprofile
+          if [ -f /home/runner/work/template-computo-R/template-computo-R/.Rprofile ]; then
+            cat /home/runner/work/template-computo-R/template-computo-R/.Rprofile
           else
             echo "No .Rprofile file found in the home directory."
           fi 
