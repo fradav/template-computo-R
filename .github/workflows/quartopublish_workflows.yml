@@ -42,9 +42,10 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: |
+            ~/renv
             ~/renv.lock
             ~/.Rprofile
-            ~/renv
+            
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: ls

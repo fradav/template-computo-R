@@ -78,9 +78,9 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: |
+            ~/renv
             ~/renv.lock
             ~/.Rprofile
-            ~/renv
 
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
