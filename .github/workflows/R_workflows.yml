@@ -64,6 +64,31 @@ jobs:
           echo "ls -la" >> activate_env.sh
           echo 'echo "ENV_PATHS_ROOT=/home/runner/renv" >> \$GITHUB_ENV' >> activate_env.sh
 
+      - name: Display .gitignore
+        run: |
+          if [ -f ~/.gitignore ]; then
+            cat .gitignore
+          else
+            echo "No .gitignore file found in the home directory."
+          fi 
+
+      - name: Display .
+        run: |
+          if [ -f ~/. ]; then
+            cat .
+            echo "No . file found in the home directory."
+          fi 
+
+
+      - name: Display ..
+        run: |
+          if [ -f ~/.. ]; then
+            cat .
+            echo "No .. file found in the home directory."
+          fi 
+
+
+
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
         with: 
