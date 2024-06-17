@@ -52,7 +52,7 @@ jobs:
           n=0
           while IFS= read -r line; do
             n=$((n+1))
-            echo "path$n=$line" >> $GITHUB_ENV
+            echo "$line" >> $GITHUB_ENV
           done < /home/runner/path_env.sh
 
       - name: Restore Cache environment
