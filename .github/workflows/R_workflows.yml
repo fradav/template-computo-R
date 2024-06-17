@@ -39,8 +39,8 @@ jobs:
       - name: path
         run: |
             echo "/home/runner/work/_temp/renv" >> path_env.sh
-            echo "~/renv.lock" >> path_env.sh
             echo "/home/runner/work/template-computo-R/template-computo-R/.Rprofile" >> path_env.sh
+            echo "~/renv.lock" >> path_env.sh
             echo "/home/runner/.Rprofile" >> path_env.sh
             echo "/home/runner/work/_temp/Library/renv/resources/activate.R" >> path_env.sh
             echo "/home/runner/work/template-computo-R/template-computo-R/renv/activate.R" >> path_env.sh
@@ -79,8 +79,8 @@ jobs:
         with:
           path: |
             /home/runner/work/_temp/renv
-            ~/renv.lock
             /home/runner/work/template-computo-R/template-computo-R/.Rprofile
+            ~/renv.lock
             /home/runner/.Rprofile
             /home/runner/work/_temp/Library/renv/resources/activate.R
             /home/runner/work/template-computo-R/template-computo-R/renv/activate.R
