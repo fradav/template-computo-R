@@ -58,7 +58,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            ${{fromJson(steps.convert-path.outputs.paths)}}
+            ${{steps.convert-path.outputs.paths}}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
