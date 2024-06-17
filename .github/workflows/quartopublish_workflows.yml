@@ -50,13 +50,13 @@ jobs:
         id: set-paths
         run: |
           paths=$(< /home/runner/path_env.sh)
-          echo "paths=$paths" >> $GITHUB_OUTPUT
+          echo "paths=$paths" >> $GITHUB_ENV
 
       - name: Restore Cache environment
         uses: actions/cache@v4
         with:
           path: |
-            ${{steps.set-paths.outputs.paths}}
+            ${{ env.paths}}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
