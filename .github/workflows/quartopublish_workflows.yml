@@ -45,12 +45,20 @@ jobs:
           echo "Content of path_env.sh:"
           cat /home/runner/path_env.sh
 
+      - name: path
+        id: convert-path
+        run: |
+             paths=""
+             while IFS= read -r line; do
+               paths="$paths ${line}"
+             done < /home/runner/path_env.sh
+             echo "paths=$paths" >> $GITHUB_OUTPUT
 
       - name: Restore Cache environment
         uses: actions/cache@v4
         with:
           path: |
-            ["/home/runner/path_env.sh"]
+            ${{fromJson(steps.convert-path.outputs.paths)}}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
