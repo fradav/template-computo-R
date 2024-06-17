@@ -48,7 +48,7 @@ jobs:
       - name: Convert paths to JSON
         id: convert-path
         run: |
-          path_content=$(<path_env.sh)
+          path_content=$(</home/runner/path_env.sh)
           json_content=$(sed '$ s/,$//' <<< "$path_content")
           echo "::set-output name=paths::$json_content"
 
