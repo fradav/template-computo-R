@@ -38,16 +38,19 @@ jobs:
 
       - name: path
         run: |
-            echo '["/home/runner/work/_temp/renv"],' >> path_env.sh
-            echo '["~/renv.lock"],' >> path_env.sh
-            echo '["/home/runner/work/template-computo-R/template-computo-R/.Rprofile"],' >> path_env.sh
-            echo '["/home/runner/.Rprofile"],' >> path_env.sh
-            echo '["/home/runner/work/_temp/Library/renv/resources/activate.R"],' >> path_env.sh
-            echo '["/home/runner/work/template-computo-R/template-computo-R/renv/activate.R"],' >> path_env.sh
-            echo '["/home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/renv/resources/activate.R"],' >> path_env.sh
-            echo '["/home/runner/work/_temp/renv/source/repository/"],' >> path_env.sh
-            echo '["/home/runner/work/_temp/renv/cache/v5/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/"],' >> path_env.sh
-            echo '["/home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/"]' >> path_env.sh
+          echo '[' > path_env.sh
+          echo '  {"home":"runner","work":"_temp","renv":""},' >> path_env.sh
+          echo '  {"~":"renv.lock"},' >> path_env.sh
+          echo '  {"home":"runner","work":"template-computo-R","template-computo-R":".Rprofile"},' >> path_env.sh
+          echo '  {"home":"runner",".Rprofile":""},' >> path_env.sh
+          echo '  ["/home/runner/work/_temp/Library/renv/resources/activate.R"],' >> path_env.sh
+          echo '  ["/home/runner/work/template-computo-R/template-computo-R/renv/activate.R"],' >> path_env.sh
+          echo '  ["/home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/renv/resources/activate.R"],' >> path_env.sh
+          echo '  ["/home/runner/work/_temp/renv/source/repository/"],' >> path_env.sh
+          echo '  ["/home/runner/work/_temp/renv/cache/v5/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/"],' >> path_env.sh
+          echo '  ["/home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/"]' >> path_env.sh
+          echo ']' >> path_env.sh
+
 
       - name: Calculate SHA-256 hash and put it in the script
         id: calculate-sha256
