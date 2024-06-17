@@ -50,7 +50,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            cat "/home/runner/path_env.sh"
+            ["/home/runner/path_env.sh"]
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
