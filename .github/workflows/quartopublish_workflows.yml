@@ -49,7 +49,7 @@ jobs:
       - name: Set PATHS environment variable
         id: set-paths
         run: |
-          paths=$(while IFS= read -r line; do echo "$line"; done < /home/runner/path_env.sh | tr '\n' ',' | sed 's/,$//')
+          paths=$(while IFS= read -r line; do echo "$line"; done < /home/runner/path_env.sh | tr '\n')
           echo "paths=$paths" >> $GITHUB_OUTPUT
 
       - name: Restore Cache environment
