@@ -44,19 +44,13 @@ jobs:
         run: |
           echo "Content of path_env.sh:"
           cat /home/runner/path_env.sh
-  
 
-      - name: Set PATHS environment variable
-        id: set-paths
-        run: |
-          paths=$(while IFS= read -r line; do echo "$line"; done < /home/runner/path_env.sh)
-          echo "paths=$paths" >> $GITHUB_OUTPUT
 
       - name: Restore Cache environment
         uses: actions/cache@v4
         with:
           path: |
-            ${{ steps.set-paths.outputs.paths }}
+            cat "/home/runner/path_env.sh"
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
