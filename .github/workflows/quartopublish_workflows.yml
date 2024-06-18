@@ -50,6 +50,7 @@ jobs:
         run: |
           paths=$(</home/runner/path_env.sh)
           echo "paths=$paths" >> GITHUB_OUTPUT
+          echo $paths
 
       - name: Restore Cache environment
         uses: actions/cache@v4
