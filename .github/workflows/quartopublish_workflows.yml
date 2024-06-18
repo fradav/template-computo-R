@@ -56,7 +56,9 @@ jobs:
         run: |
           echo ${{ steps.convert.outputs.paths }}
           echo ${{ steps.calculate-sha256.outputs.sha256 }}
-          echo $GITHUB_OUTPUT
+
+      - name: debug
+        run: echo ${{ toJson(steps.convert.outputs) }}
 
       - name: Restore Cache environment
         uses: actions/cache@v4
