@@ -55,7 +55,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            fromJSON(/home/runner/path_env.sh, "file")
+            ${{fromJson(steps.convert-path.outputs.paths)}}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
