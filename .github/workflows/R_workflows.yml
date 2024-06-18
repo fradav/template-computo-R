@@ -51,7 +51,7 @@ jobs:
           echo "Rscript -e 'renv::restore()'" >> activate_env.sh
 
       - name: debug
-        run: echo $GITHUB_OUTPUT
+        run: cat $GITHUB_OUTPUT
 
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
