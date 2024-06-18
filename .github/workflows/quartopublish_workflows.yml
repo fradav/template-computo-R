@@ -52,11 +52,13 @@ jobs:
           echo "paths=$paths" >> GITHUB_OUTPUT
           echo $paths
 
+      - name: debug
+        run: echo "${{fromJson(steps.convert-path.outputs.paths)}}"
+
       - name: Restore Cache environment
         uses: actions/cache@v4
         with:
-          path: |
-            ${{fromJson(steps.convert-path.outputs.paths)}}
+          path: ${{fromJson(steps.convert-path.outputs.paths)}}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
