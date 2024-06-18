@@ -44,13 +44,14 @@ jobs:
       - name: Calculate SHA-256 hash and put it in the script
         id: calculate-sha256
         run: |
-          hash=$(shasum -a 256 ".Rprofile" | awk '{ print $1 }' | tr -d '\n')
-          echo "sha256=${{ runner.os }}-renv-$hash" >> GITHUB_OUTPUT
+          hash=$(shasum -a 256 ".Rprofile" | awk '{ print $1 }')
+          echo "sha256=${{ runner.os }}-renv-$hash" >> $GITHUB_OUTPUT
 
           echo "sha256=${{ runner.os }}-renv-$hash" > activate_env.sh
           echo "Rscript -e 'renv::restore()'" >> activate_env.sh
 
-
+      - name: debug
+        run: echo $GITHUB_OUTPUT
 
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
