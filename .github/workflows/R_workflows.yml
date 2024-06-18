@@ -41,7 +41,6 @@ jobs:
           echo 'paths=[\"/home/runner/work/_temp/renv/\",\"~/renv.lock\",\"/home/runner/work/template-computo-R/template-computo-R/.Rprofile\",\"/home/runner/.Rprofile\",\"/home/runner/work/_temp/Library/renv/resources/activate.R\",\"/home/runner/work/template-computo-R/template-computo-R/renv/activate.R\",\"/home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/renv/resources/activate.R\",\"/home/runner/work/_temp/renv/source/repository/\",\"/home/runner/work/_temp/renv/cache/v5/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/\",\"/home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/\"]' >> $GITHUB_OUTPUT
 
 
-
       - name: Calculate SHA-256 hash and put it in the script
         id: calculate-sha256
         run: |
