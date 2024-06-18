@@ -59,7 +59,7 @@ jobs:
       - name: Restore Cache environment
         uses: actions/cache@v4
         with:
-          path: ${{ steps.convert.outputs.paths }}
+          path: ${{ fromJSON(steps.convert.outputs.paths) }}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
