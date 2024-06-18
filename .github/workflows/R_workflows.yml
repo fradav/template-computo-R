@@ -53,7 +53,7 @@ jobs:
           echo "Rscript -e 'renv::restore()'" >> activate_env.sh
 
       - name: debug
-        run: echo ${{ toJson(steps.calculate-sha256.outputs) }}
+        run: echo "${{ toJson(steps.calculate-sha256.outputs) }}"
 
       - name: Deploy an artifact
         uses: actions/upload-artifact@v3
