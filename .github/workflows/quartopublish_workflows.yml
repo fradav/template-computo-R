@@ -61,8 +61,8 @@ jobs:
             /home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/
       
         run: |
-          echo "paths=$( jq -cr --raw-input --slurp 'split("\n") | map(select(length > 0) | .[:-2])'  <<< "${{ env.paths }}")"
-          echo "paths=$( jq -cr --raw-input --slurp 'split("\n") | map(select(length > 0) | .[:-2])'  <<< "${{ env.paths }}")" >> $GITHUB_OUTPUT
+          echo "paths=$( jq -cr --raw-input --slurp 'split("\n") | map(select(length > 0))'  <<< "${{ env.paths }}")"
+          echo "paths=$( jq -cr --raw-input --slurp 'split("\n") | map(select(length > 0))'  <<< "${{ env.paths }}")" >> $GITHUB_OUTPUT
 
 
 
