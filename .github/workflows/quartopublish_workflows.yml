@@ -49,7 +49,7 @@ jobs:
         id: convert-path
         run: |
           json_content=$(</home/runner/path_env.sh)
-          echo "json_content" >> GITHUB_OUTPUT
+          echo 'json_content' >> GITHUB_OUTPUT
 
       - name: Restore Cache environment
         uses: actions/cache@v4
