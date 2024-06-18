@@ -30,6 +30,7 @@ jobs:
       # - name: Install R Dependencies with renv
       #   uses: r-lib/actions/setup-renv@v2
 
+
       - name: create a script
         run: touch activate_env.sh
 
@@ -44,6 +45,7 @@ jobs:
       - name: Calculate SHA-256 hash and put it in the script
         id: calculate-sha256
         run: |
+          touch .Rprofile
           hash=$(shasum -a 256 ".Rprofile" | awk '{ print $1 }')
           echo "sha256=${{ runner.os }}-renv-$hash" >> $GITHUB_OUTPUT
 
