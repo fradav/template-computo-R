@@ -46,19 +46,19 @@ jobs:
           cat /home/runner/path_env.sh
 
       - name: Convert paths to JSON
-        id: convert-path
+        id: convert
         run: |
           paths=$(</home/runner/path_env.sh)
           echo "paths=$paths" >> GITHUB_OUTPUT
           echo $paths
 
       - name: debug
-        run: echo "${{steps.convert-path.outputs.paths}}"
+        run: echo ${{ steps.convert.outputs.paths }}
 
       - name: Restore Cache environment
         uses: actions/cache@v4
         with:
-          path: ${{fromJson(steps.convert-path.outputs.paths)}}
+          path: ${{fromJson(steps.convert.outputs.paths)}}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
