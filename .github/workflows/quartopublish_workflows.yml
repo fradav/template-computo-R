@@ -48,8 +48,8 @@ jobs:
       - name: Convert paths to JSON
         id: convert-path
         run: |
-          json_content=$(</home/runner/path_env.sh)
-          echo 'json_content' >> GITHUB_OUTPUT
+          paths=$(</home/runner/path_env.sh)
+          echo 'paths' >> GITHUB_OUTPUT
 
       - name: Restore Cache environment
         uses: actions/cache@v4
