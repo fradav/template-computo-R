@@ -53,7 +53,10 @@ jobs:
           echo $paths
 
       - name: debug
-        run: echo ${{ steps.convert.outputs.paths }}
+        run: |
+          echo ${{ steps.convert.outputs.paths }}
+          echo ${{ steps.calculate-sha256.outputs.sha256 }}
+          echo $GITHUB_OUTPUT
 
       - name: Restore Cache environment
         uses: actions/cache@v4
