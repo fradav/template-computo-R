@@ -53,7 +53,7 @@ jobs:
           echo $paths
 
       - name: debug
-        run: echo "${{fromJson(steps.convert-path.outputs.paths)}}"
+        run: echo "${{steps.convert-path.outputs.paths}}"
 
       - name: Restore Cache environment
         uses: actions/cache@v4
