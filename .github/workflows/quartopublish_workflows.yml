@@ -61,16 +61,13 @@ jobs:
             /home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/
       
         run: |
-          echo "paths=$( jq -cr --raw-input --slurp 'split("\n") | map(select(length > 0))'  <<< "${{ env.paths }}")"
-          echo "paths=$( jq -cr --raw-input --slurp 'split("\n") | map(select(length > 0))'  <<< "${{ env.paths }}")" >> $GITHUB_OUTPUT
-
-
+          echo "paths=$( jq -crRs 'split("\n") | map(select(length > 0))' <<< "${{ env.paths }}")"
+          echo "paths=$( jq -crRs 'split("\n") | map(select(length > 0))' <<< "${{ env.paths }}")" >> $GITHUB_OUTPUT
 
       - name: debug
-        run: echo "${{ steps.convert.outputs.paths }}"
-        
-      - name: debug2
-        run: echo "${{ fromJSON(steps.convert.outputs.paths) }}"
+        run: |
+          echo "${{ steps.convert.outputs.paths }}"
+          echo "${{ fromJSON(steps.convert.outputs.paths) }}"
 
       - name: Restore Cache environment
         uses: actions/cache@v4
