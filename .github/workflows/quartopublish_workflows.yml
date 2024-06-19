@@ -60,8 +60,8 @@ jobs:
             /home/runner/work/_temp/renv/cache/v5/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/
             /home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/
         run: |
-          echo "paths=$( jq -crRs '{"JSON": .}' <<< "${{ env.paths }}")"
-          echo "paths=$( jq -crRs '{"JSON": .}' <<< "${{ env.paths }}")" >> $GITHUB_OUTPUT
+          echo "paths=${{ env.paths }}"
+          echo "paths=${{ env.paths }}" >> $GITHUB_OUTPUT
 
       - name: debug
         run: |
@@ -71,7 +71,8 @@ jobs:
       - name: Restore Cache environment
         uses: actions/cache@v4
         with:
-          path: ${{ fromJSON(steps.convert.outputs.paths.JSON) }}
+          path: |
+            ${{ steps.convert.outputs.paths }}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
