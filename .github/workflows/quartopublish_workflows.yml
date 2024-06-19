@@ -59,7 +59,8 @@ jobs:
             /home/runner/work/_temp/renv/source/repository/
             /home/runner/work/_temp/renv/cache/v5/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/
             /home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/
-      
+
+            
         run: |
           echo "paths=$( jq -crRs 'split("\n") | map(select(length > 0))' <<< "${{ env.paths }}")"
           echo "paths=$( jq -crRs 'split("\n") | map(select(length > 0))' <<< "${{ env.paths }}")" >> $GITHUB_OUTPUT
