@@ -60,19 +60,18 @@ jobs:
             /home/runner/work/_temp/renv/cache/v5/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/
             /home/runner/work/template-computo-R/template-computo-R/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu/
         run: |
-          echo "paths=$( sed 's/^\(.*\)$/\"\1\"/g' <<< "${{ env.paths }}" | jq -crRs 'split("\n") | map(select(length>2)) | join("\n") | {"JSON":.}')"
-          echo "paths=$( sed 's/^\(.*\)$/\"\1\"/g' <<< "${{ env.paths }}" | jq -crRs 'split("\n") | map(select(length>2)) | join("\n") | {"JSON":.}')" >> $GITHUB_OUTPUT
+          echo "paths=$( sed ':a;N;$!ba;s/\n/\\n/g' <<< "${{ env.paths }}")"
+          echo "paths=$( sed ':a;N;$!ba;s/\n/\\n/g' <<< "${{ env.paths }}")" >> $GITHUB_OUTPUT
 
       - name: debug
         run: |
-          echo "${{ steps.convert.outputs.paths.JSON }}"
-          echo "${{ fromJSON(steps.convert.outputs.paths) }}"
-
+          echo "${{ steps.convert.outputs.paths }}"
+ 
       - name: Restore Cache environment
         uses: actions/cache@v4
         with:
           path: |
-            ${{ fromJSON(steps.convert.outputs.paths.JSON) }}
+            ${{ steps.convert.outputs.paths }}
           key: ${{ steps.calculate-sha256.outputs.sha256 }}
 
       - name: Set up Quarto
